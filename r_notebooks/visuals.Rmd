@@ -1,0 +1,40 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+rm(list=ls())
+setwd("~/Mirror/github/causal_inference_with_text_word_embedding_matching/jupyter_notebooks")
+library(ggplot2)
+library(gridExtra)
+```
+```{r import data}
+data_sensitivity = read.csv("~/Mirror/github/causal_inference_with_text_word_embedding_matching/jupyter_notebooks/parameter_sensitivity.csv")
+#data_sensitivity$NUMBER_AGGL_DISTANCE = as.factor(data_sensitivity$NUMBER_AGGL_DISTANCE)
+
+```
+
+```{r plot}
+g1 = ggplot(data_sensitivity, aes(x = KNN, y = MEAN, color = NUMBER_AGGL_DISTANCE)) +
+  geom_point() +
+  labs(#title = "Sensitivity Analysis of Agglomerative Clustering Cosine Distance",
+       #subtitle = "Varying parameters K and a holding b constant at 0.23",
+       x = "Number of Nearest Neighbors",
+       y = "ATC") +
+      scale_color_continuous(guide = guide_colorbar(title = "a", title.hjust = 0.15))
+
+g2 = ggplot(data_sensitivity, aes(x = KNN, y = NUMBER_AGGL_CLUSTERS, color = NUMBER_AGGL_DISTANCE)) +
+  geom_point() +
+  labs(#title = "Sensitivity Analysis of Numnber of Agglomerative Clusters",
+       #subtitle = "Varying parameters K and a holding b constant at 0.23",
+       x = "Number of Nearest Neighbors",
+       y = "Number of Agglomerative Clusters") +
+     scale_color_continuous(guide = guide_colorbar(title = "a", title.hjust = 0.15))
+
+
+grid.arrange(g1, g2, ncol = 2)
+```
+

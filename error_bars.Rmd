@@ -1,0 +1,44 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Cmd+Shift+Enter*. 
+
+```{r}
+library(ggplot2)
+library(tidyverse)
+
+
+# Create data
+data <- tribble(
+  ~variable, ~mean1, ~sd1, ~sd2,
+  "Embedding Matching",	-0.17,	-0.29,-0.05,
+  "Naïve (Baseline)",	-0.25,	-0.39,-0.11,
+  "SPSM",	-0.26,	-0.38,	-0.14,
+)
+
+data
+
+# Plot
+ggplot(data) +
+  geom_point( aes(x=variable, y=mean1), color=c("green4", "#E69F00", "#56B4E9"), size=3 ) +
+  geom_errorbar( aes(x=variable, ymin=sd1, ymax=sd2), color=c("green4", "#E69F00", "#56B4E9"), width = 0.2) +
+  coord_flip()+
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+  ) +
+  xlab("Method") +
+  ylab("Mean") +
+  ggtitle("Average treatment effect on the control with confidence interval") + theme(plot.title = element_text(hjust = 0.5))
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Cmd+Option+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Cmd+Shift+K* to preview the HTML file). 
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
