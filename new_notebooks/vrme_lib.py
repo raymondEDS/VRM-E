@@ -4,8 +4,7 @@ import pandas as pd
 
 def print_results(name, atc, ci_lower_bound, ci_upper_bound):
     print(f'{name} ATC: {atc:.4}')
-    print(f'{name} CI lower bound: {ci_lower_bound:.4}')
-    print(f'{name} CI upper bound: {ci_upper_bound:.4}')
+    print(f'{name} CI: [{ci_lower_bound:.4}, {ci_upper_bound:.4}]')
     print(f'{name} CI range: {abs(ci_lower_bound) -abs(ci_upper_bound):.4}')
     
     
