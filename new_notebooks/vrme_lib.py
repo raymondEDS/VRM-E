@@ -74,6 +74,17 @@ def strip_char(row):
         s += " " + word.replace(' ','_').replace('-','_').lower()
     return s
 
+
+# ==== VRM-E utils ===============================================================================
+
+def lambda_get_match_potential_outcomes(row, df_embeddings_2018): # Eqn 7
+    paper_ids = row.id_2018
+    big_m = len(row.id_2018)
+    if big_m == 0:
+        return None
+    ratings = [df_embeddings_2018[df_embeddings_2018['paper_id'] == paper_id].AVG_rating.values[0] for paper_id in paper_ids]
+    return sum(ratings)/big_m
+
 # ==== Agreement utils ===========================================================================
 def print_ttest(other_method_name, ttest):
     print(f'T-Test: {other_method_name} vs VRM-E')
