@@ -1,6 +1,6 @@
 # ACL2023: Causal Matching with Text Embeddings: A Case Study in Estimating the Causal Effects of Peer Review Policies
 This README.md provides an overview of the code repositories contained here 
-and instructions on running the experiments described in the [paper]([https://2023.aclweb.org/program/accepted_findings/#short-papers](https://aclanthology.org/2023.findings-acl.83/):  
+and instructions on running the experiments described in the [paper](https://aclanthology.org/2023.findings-acl.83/):  
 ```bash
 @inproceedings{zhang-etal-2023-causal-matching,
     title = "Causal Matching with Text Embeddings: A Case Study in Estimating the Causal Effects of Peer Review Policies",
